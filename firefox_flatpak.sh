@@ -182,6 +182,17 @@ POLICIES_PATH="$HOME/.local/share/flatpak/extension/org.mozilla.firefox.systemco
 POLICIES_CONTENT=$(cat << 'EOF'
 {
   "policies": {
+    "SearchEngines": {
+      "Add": [
+        {
+          "Name": "Wiktionary",
+          "URLTemplate": "https://en.wiktionary.org/wiki/{searchTerms}",
+          "IconURL": "https://en.wiktionary.org/static/favicon/wiktionary/en.ico",
+          "Alias": "wkt",
+          "Description": "Wiktionary Search"
+        }
+      ]
+    },
     "ExtensionSettings": {
       "uBlock0@raymondhill.net": {
         "installation_mode": "force_installed",
@@ -190,12 +201,21 @@ POLICIES_CONTENT=$(cat << 'EOF'
       "foxytab@eros.man": {
         "installation_mode": "blocked",
           "install_url": "https://addons.mozilla.org/ja/firefox/downloads/latest/foxytab/latest.xpi"
+      },
+      "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}": {
+        "installation_mode": "blocked",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/user-agent-string-switcher/latest.xpi"
+      },
+      "78272b6fa58f4a1abaac99321d503a20@proton.me": {
+        "installation_mode": "force_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi"
       }
     }
   }
 }
 EOF
 )
+
 
 create_policies(){
   if echo "$POLICIES_CONTENT" >  "$POLICIES_PATH"; then
